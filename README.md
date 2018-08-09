@@ -1,3 +1,6 @@
+###Modified to run on versions older than Python 3.6. 
+Removed PEP 498: Formatted string literals. 
+
 # DenseNet and FCDenseNet
 
 A [PyTorch](http://pytorch.org/) implementation of the DenseNet and FCDenseNet architectures from the papers:
@@ -12,11 +15,11 @@ and that are therefore easy to import and reuse.
 
 ## Requirements and installation
 
-The project is based on Python 3.6+ and PyTorch 0.4+.
+The project is based on Python 3 and PyTorch 0.4+.
 
 To make sure all the requirements are installed, a conda environment is recommended:
 ```bash
-conda create --name venv python=3.6
+conda create --name venv python=3
 source activate venv
 conda install pytorch torchvision -c pytorch
 ```

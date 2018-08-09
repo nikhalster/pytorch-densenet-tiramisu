@@ -26,6 +26,6 @@ class RichRepr(object):
     def __repr__(self, *args, **kwargs):
         res = super(RichRepr, self).__repr__()
         args = filter(lambda s: len(s) > 0, map(str, args))
-        kwargs = (f'{k}={v}' for k, v in kwargs.items())
+        kwargs = ('{}={}'.format(k, v) for k, v in kwargs.items())
         desc = ', '.join(chain(args, kwargs))
-        return re.sub(rf'({self.__class__.__name__})', rf'\1({desc})', res, count=1)
+        return re.sub(r'({})'.format(self.__class__.__name__), r'\1({})'.format(desc), res, count=1)

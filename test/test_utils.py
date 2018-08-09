@@ -13,11 +13,11 @@ class DummyMLP(RichRepr, Sequential):
         self.layers = layers
         self.final_softmax = final_softmax
         for i, of in enumerate(layers):
-            self.add_module(f'lin_{i}', Linear(in_features, of))
+            self.add_module('lin_{}'.format(i), Linear(in_features, of))
             in_features = of
-            self.add_module(f'relu_{i}', ReLU(inplace=True))
+            self.add_module('relu_{}'.format(i), ReLU(inplace=True))
         if final_softmax:
-            self.__delattr__(f'relu_{i}')
+            self.__delattr__('relu_{}'.format(i))
             self.add_module('soft', Softmax())
 
     def __repr__(self):

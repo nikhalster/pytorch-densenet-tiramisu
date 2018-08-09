@@ -95,13 +95,13 @@ class FCDenseNet(Module):
         for i, (dense_params, transition_params) in enumerate(down_pairs_params):
             block = DenseBlock(current_channels, **dense_params)
             current_channels = block.out_channels
-            self.down_dense.add_module(f'block_{i}', block)
+            self.down_dense.add_module('block_{}'.format(i), block)
 
             skip_connections_channels.append(block.out_channels)
 
             transition = TransitionDown(current_channels, **transition_params)
             current_channels = transition.out_channels
-            self.down_trans.add_module(f'trans_{i}', transition)
+            self.down_trans.add_module('trans_{}'.format(i), transition)
         # endregion
 
         # region Middle block
@@ -145,11 +145,11 @@ class FCDenseNet(Module):
         for i, (transition_params_up, dense_params_up) in enumerate(up_pairs_params):
             transition = TransitionUp(current_channels, **transition_params_up)
             current_channels = transition.out_channels
-            self.up_trans.add_module(f'trans_{i}', transition)
+            self.up_trans.add_module('trans_{}'.format(i), transition)
 
             block = DenseBlock(current_channels, **dense_params_up)
             current_channels = block.out_channels
-            self.up_dense.add_module(f'block_{i}', block)
+            self.up_dense.add_module('block_{}'.format(i), block)
         # endregion
 
         # region Final convolution

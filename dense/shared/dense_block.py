@@ -37,7 +37,7 @@ class DenseBlock(RichRepr, Module):
 
         for i in range(num_layers):
             self.add_module(
-                f'layer_{i}',
+                'layer_{}'.format(i),
                 DenseLayer(in_channels=in_channels + i * growth_rate, out_channels=growth_rate, **dense_layer_params)
             )
 
@@ -55,6 +55,6 @@ class DenseBlock(RichRepr, Module):
         return torch.cat(all_outputs, dim=1)
 
     def __repr__(self):
-        concat_input = f'+{self.in_channels}' if self.concat_input else ''
-        out_channels = f'{self.num_layers}*{self.growth_rate}{concat_input}={self.out_channels}'
+        concat_input = '+{}'.format(self.in_channels) if self.concat_input else ''
+        out_channels = '{}*{}{}={}'.format(self.num_layers, self.growth_rate, concat_input, self.out_channels)
         return super(DenseBlock, self).__repr__(self.in_channels, out_channels)

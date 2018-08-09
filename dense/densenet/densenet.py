@@ -66,12 +66,12 @@ class DenseNet(Sequential):
         for block_pair_idx, (dense_block_params, transition_block_params) in enumerate(block_pairs_params):
             block = DenseBlock(current_channels, **dense_block_params)
             current_channels = block.out_channels
-            self.add_module(f'block_{block_pair_idx}', block)
+            self.add_module('block_{}'.format(block_pair_idx), block)
 
             if transition_block_params is not None:
                 transition = Transition(current_channels, **transition_block_params)
                 current_channels = transition.out_channels
-                self.add_module(f'trans_{block_pair_idx}', transition)
+                self.add_module('trans_{}'.format(block_pair_idx), transition)
         # endregion
 
         # region Classification block

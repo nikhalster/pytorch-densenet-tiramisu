@@ -6,6 +6,6 @@ setup(
     description='PyTorch implementation of DenseNet and FCDenseNet',
     author='Federico Baldassarre',
     author_email='baldassarre.fe@gmail.com',
-    url='https://github.com/baldassarreFe/pytorch-densenet-tiramisu',
+    url='https://github.com/nikhalster/pytorch-densenet-tiramisu',
     packages=find_packages(exclude='test'),
 )

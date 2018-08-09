@@ -22,7 +22,7 @@ class TransitionDown(RichRepr, Sequential):
         super(TransitionDown, self).__init__()
 
         if not 0.0 < compression <= 1.0:
-            raise ValueError(f'Compression must be in (0, 1] range, got {compression}')
+            raise ValueError('Compression must be in (0, 1] range, got {}'.format(compression))
 
         self.in_channels = in_channels
         self.dropout = dropout

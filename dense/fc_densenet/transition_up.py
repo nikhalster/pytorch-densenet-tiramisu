@@ -32,8 +32,7 @@ class TransitionUp(RichRepr, Module):
 
     def forward(self, upsample, skip):
         if self.skip_channels is not None and skip.shape[1] != self.skip_channels:
-            raise ValueError(f'Number of channels in the skip connection input ({skip.shape[1]}) '
-                             f'is different from the expected number of channels ({self.skip_channels})')
+            raise ValueError('Number of channels in the skip connection input ({}) is different from the expected number of channels ({})'.format(skip.shape[1], self.skip_channels))
         res = self.upconv(upsample)
         res = self.concat(res, skip)
         return res
@@ -41,13 +40,13 @@ class TransitionUp(RichRepr, Module):
     def __repr__(self):
         skip_channels = self.skip_channels if self.skip_channels is not None else "?"
         out_channels = self.out_channels if self.out_channels is not None else "?"
-        return super(TransitionUp, self).__repr__(f'[{self.upsample_channels}, {skip_channels}] -> {out_channels})')
+        return super(TransitionUp, self).__repr__('[{}, {}] -> {})'.format(self.upsample_channels, skip_channels, out_channels))
 
 
 class CenterCropConcat(Module):
     def forward(self, x, y):
         if x.shape[0] != y.shape[0]:
-            raise ValueError(f'x and y inputs contain a different number of samples')
+            raise ValueError('x and y inputs contain a different number of samples')
         height = min(x.size(2), y.size(2))
         width = min(x.size(3), y.size(3))
 
